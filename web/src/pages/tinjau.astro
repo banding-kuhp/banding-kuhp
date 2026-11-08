@@ -1,0 +1,49 @@
+---
+import Dasar from "../layouts/Dasar.astro";
+import { peta, lama, tinjauBaru, koreksiLama } from "../lib/data.js";
+const pasangan = peta.filter((e) => e.lama.length && e.baru.length);
+const belum = pasangan.filter((e) => !e.diverifikasi);
+const ada = new Set(lama.map((p) => parseInt(p.nomor, 10)));
+const hilang = Array.from({ length: 569 }, (_, i) => i + 1).filter((n) => !ada.has(n));
+const verifikasi = import.meta.env.PUBLIC_VERIFIKASI;
+---
+<Dasar judul="Perlu ditinjau" deskripsi="Daftar kerja verifikasi data Banding KUHP.">
+  <meta slot="head" name="robots" content="noindex" />
+  <h1>Perlu ditinjau</h1>
+  <p class="redup">Daftar kerja untuk penyusun. Setiap butir di sini belum diperiksa manusia.</p>
+
+  <section class="kartu blok">
+    <h2>1. Padanan pasal: {belum.length} dari {pasangan.length} belum diverifikasi</h2>
+    {verifikasi
+      ? <p><a class="tombol" href={verifikasi}>Buka alat verifikasi</a> <span class="redup">Atau klik pasangan di bawah untuk langsung memeriksanya.</span></p>
+      : <p>Jalankan <code>python3 pipeline/verifikasi.py</code> lalu build dengan <code>PUBLIC_VERIFIKASI=http://127.0.0.1:4322</code> untuk menampilkan tautan verifikasi.</p>}
+    <details><summary>Daftar pasangan</summary>
+      <ul class="kolom">{belum.map((e) => <li><a href={verifikasi ? `${verifikasi}/?lama=${e.lama[0]}` : `/banding/${e.lama[0]}-${e.baru[0]}`}>{e.lama[0]} → {e.baru[0]}</a> <span class="redup">{Math.round(e.skor * 100)}%</span></li>)}</ul>
+    </details>
+  </section>
+
+  <section class="kartu blok">
+    <h2>2. KUHP lama: {hilang.length} pasal belum ada teksnya</h2>
+    <p>{hilang.join(", ")}</p>
+  </section>
+
+  <section class="kartu blok">
+    <h2>3. KUHP lama: {koreksiLama.saran.length} saran ejaan dari OCR</h2>
+    <p class="redup">{koreksiLama.dikoreksi.length} kata sudah dikoreksi otomatis karena salah baca mesin yang jelas. Saran di bawah belum diterapkan.</p>
+    <table><thead><tr><th>Pasal</th><th>Tertulis</th><th>Usul</th></tr></thead>
+      <tbody>{koreksiLama.saran.map((s) => <tr><td><a href={`/kuhp-lama/${s.nomor}`}>{s.nomor}</a></td><td>{s.dari}</td><td>{s.usul}</td></tr>)}</tbody></table>
+  </section>
+
+  <section class="kartu blok">
+    <h2>4. KUHP baru: {tinjauBaru.tinjau.length} perbedaan antar-sumber</h2>
+    <p class="redup">Salinan digital dibandingkan dengan Wikisource (dibaca ulang dari pindaian resmi). {tinjauBaru.dikoreksi.length} perbedaan sudah dikoreksi otomatis.</p>
+    <table><thead><tr><th>Pasal</th><th>Salinan digital</th><th>Wikisource</th></tr></thead>
+      <tbody>{tinjauBaru.tinjau.map((s) => <tr><td><a href={`/kuhp-baru/${s.nomor}`}>{s.nomor}</a></td><td>{s.llg || "—"}</td><td>{s.ws || "—"}</td></tr>)}</tbody></table>
+  </section>
+</Dasar>
+<style>
+  .blok { margin-bottom: 1.25rem; }
+  .blok h2 { margin-top: 0; font-size: 1.3rem; }
+  .kolom { columns: 12rem; padding-left: 1.1rem; }
+  code { background: var(--bidang); padding: 0 0.3rem; border-radius: 4px; }
+</style>

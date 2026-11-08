@@ -1,0 +1,6 @@
+{{UU|1|2023|tentang=Kitab Undang-Undang Hukum Pidana
+|previous=[[../Buku Kesatu|Buku Kesatu]]}}
+
+<div class="indented-page">
+<pages index="UU 1 2023.pdf" from=59 to=229 tosection="2-37" />
+</div>

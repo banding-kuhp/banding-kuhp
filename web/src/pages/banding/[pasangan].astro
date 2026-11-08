@@ -1,0 +1,48 @@
+---
+import Dasar from "../../layouts/Dasar.astro";
+import TeksPasal from "../../components/TeksPasal.astro";
+import Ancaman from "../../components/Ancaman.astro";
+import Status from "../../components/Status.astro";
+import { peta, pasalLama, pasalBaru } from "../../lib/data.js";
+
+export function getStaticPaths() {
+  const sudah = new Set();
+  const hasil = [];
+  for (const e of peta) {
+    for (const l of e.lama) for (const b of e.baru) {
+      const kunci = `${l}-${b}`;
+      if (sudah.has(kunci) || !pasalLama.get(l) || !pasalBaru.get(b)) continue;
+      sudah.add(kunci);
+      hasil.push({ params: { pasangan: kunci }, props: { l: pasalLama.get(l), b: pasalBaru.get(b), e } });
+    }
+  }
+  return hasil;
+}
+const { l, b, e } = Astro.props;
+const verifikasi = import.meta.env.PUBLIC_VERIFIKASI;
+---
+<Dasar judul={`Pasal ${l.nomor} KUHP lama vs Pasal ${b.nomor} KUHP baru`} deskripsi={`Perbandingan Pasal ${l.nomor} KUHP lama dengan Pasal ${b.nomor} KUHP baru UU 1/2023.`}>
+  <p class="remah"><a href="/">Cari</a> › Bandingkan</p>
+  <h1>Pasal {l.nomor} lama ↔ Pasal {b.nomor} baru</h1>
+  <p><Status entri={e} />{verifikasi && <> <a class="tombol garis" href={`${verifikasi}/?lama=${l.nomor}`}>Verifikasi padanan ini</a></>}</p>
+  <div class="berdampingan">
+    <section class="kartu" aria-labelledby="kolom-lama">
+      <h2 id="kolom-lama"><a href={`/kuhp-lama/${l.nomor}`}>Pasal {l.nomor} KUHP lama</a></h2>
+      <p class="redup">Bab {l.bab} {l.judul_bab}</p>
+      <TeksPasal teks={l.teks} />
+    </section>
+    <section class="kartu" aria-labelledby="kolom-baru">
+      <h2 id="kolom-baru"><a href={`/kuhp-baru/${b.nomor}`}>Pasal {b.nomor} KUHP baru</a></h2>
+      <p class="redup">Bab {b.bab} {b.judul_bab}</p>
+      <TeksPasal teks={b.teks} />
+    </section>
+  </div>
+  <section class="kartu" style="margin-top:1.25rem" aria-label="Perbandingan ancaman pidana">
+    <Ancaman dulu={l} kini={b} />
+  </section>
+</Dasar>
+<style>
+  .berdampingan { display: grid; gap: 1.25rem; }
+  @media (min-width: 900px) { .berdampingan { grid-template-columns: 1fr 1fr; align-items: start; } }
+  .berdampingan h2 { margin-top: 0; font-size: 1.35rem; }
+</style>

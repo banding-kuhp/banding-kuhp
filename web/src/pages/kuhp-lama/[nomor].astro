@@ -1,0 +1,64 @@
+---
+import Dasar from "../../layouts/Dasar.astro";
+import TeksPasal from "../../components/TeksPasal.astro";
+import Ancaman from "../../components/Ancaman.astro";
+import Status from "../../components/Status.astro";
+import { lama, pasalBaru, dariLama, BUKU_LAMA } from "../../lib/data.js";
+
+export function getStaticPaths() {
+  return lama.map((p) => ({ params: { nomor: p.nomor }, props: { p } }));
+}
+const { p } = Astro.props;
+const entri = dariLama(p.nomor);
+const verifikasi = import.meta.env.PUBLIC_VERIFIKASI;
+---
+<Dasar judul={`Pasal ${p.nomor} KUHP lama`} deskripsi={`Pasal ${p.nomor} KUHP lama (WvS) dan padanannya di KUHP baru UU 1/2023.`}>
+  <p class="remah"><a href="/daftar-isi#lama">KUHP lama</a> › {BUKU_LAMA[p.buku]} › Bab {p.bab} {p.judul_bab}</p>
+  <h1>Pasal {p.nomor} KUHP lama</h1>
+  {verifikasi && <p><a class="tombol garis" href={`${verifikasi}/?lama=${p.nomor}`}>Verifikasi padanan ini</a></p>}
+  <div class="dua">
+    <section class="kartu" aria-labelledby="teks-lama">
+      <h2 id="teks-lama" class="kecil">Bunyi pasal</h2>
+      <TeksPasal teks={p.teks} />
+    </section>
+    <section aria-labelledby="di-baru">
+      <h2 id="di-baru" class="kecil">Di KUHP baru</h2>
+      {entri.map((e) => (
+        <div class="kartu padanan">
+          <p><Status entri={e} /></p>
+          {e.baru.length ? (
+            <>
+              {e.baru.map((n) => {
+                const q = pasalBaru.get(n);
+                return (
+                  <div>
+                    <h3><a href={`/kuhp-baru/${n}`}>Pasal {n} KUHP baru</a></h3>
+                    <p class="redup">Bab {q?.bab} {q?.judul_bab}</p>
+                    <Ancaman dulu={p} kini={q} />
+                  </div>
+                );
+              })}
+              <p><a class="tombol" href={`/banding/${p.nomor}-${e.baru[0]}`}>Bandingkan berdampingan</a></p>
+            </>
+          ) : (
+            <p>Belum ditemukan padanan di KUHP baru. Bisa jadi pasal ini tidak diatur lagi, atau diatur di undang-undang lain.</p>
+          )}
+          {!e.diverifikasi && e.kandidat.length > 1 && (
+            <details>
+              <summary>Kandidat lain dari pencocokan otomatis</summary>
+              <ul>{e.kandidat.slice(1).map((k) => <li><a href={`/kuhp-baru/${k.nomor}`}>Pasal {k.nomor}</a> <span class="redup">(kemiripan {Math.round(k.skor * 100)}%)</span></li>)}</ul>
+            </details>
+          )}
+        </div>
+      ))}
+    </section>
+  </div>
+</Dasar>
+<style>
+  .dua { display: grid; gap: 1.25rem; }
+  @media (min-width: 960px) { .dua { grid-template-columns: 1.15fr 1fr; align-items: start; } }
+  .kecil { font-size: 1.15rem; margin-top: 0; font-family: var(--sans); color: var(--redup); font-weight: 700; }
+  .padanan + .padanan { margin-top: 1rem; }
+  .padanan h3 { margin: 0.6rem 0 0.1rem; font-size: 1.35rem; }
+  .padanan p { margin: 0.3rem 0 0.8rem; }
+</style>

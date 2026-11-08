@@ -1,0 +1,28 @@
+---
+import Dasar from "../layouts/Dasar.astro";
+---
+<Dasar judul="Tentang">
+  <article class="baca">
+    <h1>Tentang Banding KUHP</h1>
+    <p>Banding KUHP membantu membaca KUHP baru (UU Nomor 1 Tahun 2023, berlaku sejak 2 Januari 2026) dari sudut pasal-pasal KUHP lama yang sudah dikenal: setiap pasal punya halamannya sendiri, dengan padanannya, teks berdampingan dan perbandingan ancaman pidana.</p>
+
+    <h2>Sumber teks</h2>
+    <ul>
+      <li><strong>KUHP baru:</strong> UU 1/2023, Lembaran Negara 2023 Nomor 1, dari <a href="https://peraturan.bpk.go.id/Details/234935/uu-no-1-tahun-2023">JDIH BPK</a>. Teks diambil dari salinan digital dan dicocokkan kata demi kata dengan <a href="https://id.wikisource.org/wiki/Undang-Undang_Republik_Indonesia_Nomor_1_Tahun_2023">Wikisource</a>, yang dibaca ulang dari pindaian resmi.</li>
+      <li><strong>Perubahan:</strong> <a href="https://peraturan.bpk.go.id/Details/337869">UU 1/2026 tentang Penyesuaian Pidana</a>, Pasal VII, mengubah 48 pasal KUHP baru, menyisipkan Pasal 599A dan menghapus Pasal 615 dan 616. Bunyi yang ditampilkan adalah bunyi setelah perubahan; bunyi sebelumnya tetap bisa dibuka di setiap pasal.</li>
+      <li><strong>KUHP lama:</strong> terjemahan BPHN atas Wetboek van Strafrecht (UU 1/1946), dari salinan yang diterbitkan instansi pemerintah. Salah baca mesin yang jelas sudah dikoreksi; sisanya ada di <a href="/tinjau">daftar tinjau</a>. Teks Belanda tetap teks yang sah; terjemahan ini alat bantu baca.</li>
+    </ul>
+
+    <h2 id="verifikasi">Cara verifikasi padanan</h2>
+    <p>Padanan pasal lama ke pasal baru mula-mula dibuat otomatis dengan mencocokkan kemiripan isi teks. Setiap pasangan diberi label <span class="label draft">Draft, belum diverifikasi</span> sampai diperiksa satu per satu oleh penyusun, lalu berubah menjadi <span class="label ok">Diverifikasi</span>. Jenis perubahan yang dipakai: tetap, diubah, digabung, dipecah, dipindah, tidak ada padanan, dan pasal baru.</p>
+
+    <h2>Batasan</h2>
+    <p>Situs ini alat bantu riset, bukan nasihat hukum. Ancaman pidana dibaca otomatis dari kalimat pasal (misalnya "pidana penjara paling lama 5 tahun") dan bisa tidak lengkap untuk pasal yang ancamannya bergantung pada pasal lain. Denda KUHP lama ditulis seperti bunyi teksnya.</p>
+
+    <h2>Terbuka untuk semua</h2>
+    <p>Kode dan data terbuka. Peraturan perundang-undangan bukan objek hak cipta (Pasal 42 UU 28/2014 tentang Hak Cipta). Koreksi teks dan padanan bisa diajukan lewat repositori proyek.</p>
+  </article>
+</Dasar>
+<style>
+  .baca { max-width: 70ch; font-size: 1.05rem; }
+</style>

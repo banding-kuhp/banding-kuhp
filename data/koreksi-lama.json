@@ -1,0 +1,771 @@
+{
+ "dikoreksi": [
+  {
+   "nomor": "2",
+   "dari": "dangan",
+   "jadi": "dengan"
+  },
+  {
+   "nomor": "5",
+   "dari": "bsgi",
+   "jadi": "bagi"
+  },
+  {
+   "nomor": "14a",
+   "dari": "mangenai",
+   "jadi": "mengenai"
+  },
+  {
+   "nomor": "33",
+   "dari": "bareng",
+   "jadi": "barang"
+  },
+  {
+   "nomor": "80",
+   "dari": "tanggang",
+   "jadi": "tenggang"
+  },
+  {
+   "nomor": "117",
+   "dari": "mangangkut",
+   "jadi": "mengangkut"
+  },
+  {
+   "nomor": "140",
+   "dari": "mekar",
+   "jadi": "makar"
+  },
+  {
+   "nomor": "156",
+   "dari": "rnuka",
+   "jadi": "muka"
+  },
+  {
+   "nomor": "156",
+   "dari": "beherapa",
+   "jadi": "beberapa"
+  },
+  {
+   "nomor": "156",
+   "dari": "hagian",
+   "jadi": "bagian"
+  },
+  {
+   "nomor": "156a",
+   "dari": "bcrsifat",
+   "jadi": "bersifat"
+  },
+  {
+   "nomor": "157",
+   "dari": "diketuhui",
+   "jadi": "diketahui"
+  },
+  {
+   "nomor": "157",
+   "dari": "dcngan",
+   "jadi": "dengan"
+  },
+  {
+   "nomor": "160",
+   "dari": "utau",
+   "jadi": "atau"
+  },
+  {
+   "nomor": "163",
+   "dari": "apahila",
+   "jadi": "apabila"
+  },
+  {
+   "nomor": "165",
+   "dari": "akihat",
+   "jadi": "akibat"
+  },
+  {
+   "nomor": "167",
+   "dari": "jahatan",
+   "jadi": "jabatan"
+  },
+  {
+   "nomor": "181",
+   "dari": "lirna",
+   "jadi": "lima"
+  },
+  {
+   "nomor": "182",
+   "dari": "rnenyuruh",
+   "jadi": "menyuruh"
+  },
+  {
+   "nomor": "187",
+   "dari": "otau",
+   "jadi": "atau"
+  },
+  {
+   "nomor": "187",
+   "dari": "menirnbulkan",
+   "jadi": "menimbulkan"
+  },
+  {
+   "nomor": "188",
+   "dari": "pidnna",
+   "jadi": "pidana"
+  },
+  {
+   "nomor": "191",
+   "dari": "dvngan",
+   "jadi": "dengan"
+  },
+  {
+   "nomor": "191",
+   "dari": "tirnbul",
+   "jadi": "timbul"
+  },
+  {
+   "nomor": "193",
+   "dari": "kerena",
+   "jadi": "karena"
+  },
+  {
+   "nomor": "197",
+   "dari": "menyehabkan",
+   "jadi": "menyebabkan"
+  },
+  {
+   "nomor": "199",
+   "dari": "karcna",
+   "jadi": "karena"
+  },
+  {
+   "nomor": "207",
+   "dari": "hadan",
+   "jadi": "badan"
+  },
+  {
+   "nomor": "216",
+   "dari": "puling",
+   "jadi": "paling"
+  },
+  {
+   "nomor": "291",
+   "dari": "kematisn",
+   "jadi": "kematian"
+  },
+  {
+   "nomor": "299",
+   "dari": "tungan",
+   "jadi": "tangan"
+  },
+  {
+   "nomor": "315",
+   "dari": "peneemaran",
+   "jadi": "pencemaran"
+  },
+  {
+   "nomor": "315",
+   "dari": "dilakuknn",
+   "jadi": "dilakukan"
+  },
+  {
+   "nomor": "315",
+   "dari": "stau",
+   "jadi": "atau"
+  },
+  {
+   "nomor": "316",
+   "dari": "dspat",
+   "jadi": "dapat"
+  },
+  {
+   "nomor": "321",
+   "dari": "rnelakukan",
+   "jadi": "melakukan"
+  },
+  {
+   "nomor": "331",
+   "dari": "menyemhunyikan",
+   "jadi": "menyembunyikan"
+  },
+  {
+   "nomor": "333",
+   "dari": "perarnpasan",
+   "jadi": "perampasan"
+  },
+  {
+   "nomor": "340",
+   "dari": "rnati",
+   "jadi": "mati"
+  },
+  {
+   "nomor": "355",
+   "dari": "lams",
+   "jadi": "lama"
+  },
+  {
+   "nomor": "356",
+   "dari": "pejsbat",
+   "jadi": "pejabat"
+  },
+  {
+   "nomor": "360",
+   "dari": "timhul",
+   "jadi": "timbul"
+  },
+  {
+   "nomor": "361",
+   "dari": "ditamhah",
+   "jadi": "ditambah"
+  },
+  {
+   "nomor": "361",
+   "dari": "dicahut",
+   "jadi": "dicabut"
+  },
+  {
+   "nomor": "365",
+   "dari": "tuhun",
+   "jadi": "tahun"
+  },
+  {
+   "nomor": "366",
+   "dari": "dalum",
+   "jadi": "dalam"
+  },
+  {
+   "nomor": "367",
+   "dari": "pemhantu",
+   "jadi": "pembantu"
+  },
+  {
+   "nomor": "378",
+   "dari": "rnaupun",
+   "jadi": "maupun"
+  },
+  {
+   "nomor": "382",
+   "dari": "diancarn",
+   "jadi": "diancam"
+  },
+  {
+   "nomor": "387",
+   "dari": "perhuatan",
+   "jadi": "perbuatan"
+  },
+  {
+   "nomor": "394",
+   "dari": "hagi",
+   "jadi": "bagi"
+  },
+  {
+   "nomor": "397",
+   "dari": "Kitah",
+   "jadi": "kitab"
+  },
+  {
+   "nomor": "399",
+   "dari": "hersangkutan",
+   "jadi": "bersangkutan"
+  },
+  {
+   "nomor": "404",
+   "dari": "memheri",
+   "jadi": "memberi"
+  },
+  {
+   "nomor": "413",
+   "dari": "kekuntan",
+   "jadi": "kekuatan"
+  },
+  {
+   "nomor": "415",
+   "dari": "penjsra",
+   "jadi": "penjara"
+  },
+  {
+   "nomor": "416",
+   "dari": "diheri",
+   "jadi": "diberi"
+  },
+  {
+   "nomor": "417",
+   "dari": "memhiarkan",
+   "jadi": "membiarkan"
+  },
+  {
+   "nomor": "417",
+   "dari": "memhikin",
+   "jadi": "membikin"
+  },
+  {
+   "nomor": "452",
+   "dari": "keterangun",
+   "jadi": "keterangan"
+  },
+  {
+   "nomor": "452",
+   "dari": "dianeam",
+   "jadi": "diancam"
+  },
+  {
+   "nomor": "452",
+   "dari": "jiks",
+   "jadi": "jika"
+  },
+  {
+   "nomor": "452",
+   "dari": "aktu",
+   "jadi": "akta"
+  },
+  {
+   "nomor": "460",
+   "dari": "hersalah",
+   "jadi": "bersalah"
+  },
+  {
+   "nomor": "479j",
+   "dari": "Pasai",
+   "jadi": "pasal"
+  },
+  {
+   "nomor": "483",
+   "dari": "penjnra",
+   "jadi": "penjara"
+  },
+  {
+   "nomor": "485",
+   "dari": "gamhar",
+   "jadi": "gambar"
+  },
+  {
+   "nomor": "512a",
+   "dari": "sambilan",
+   "jadi": "sembilan"
+  },
+  {
+   "nomor": "514",
+   "dari": "kuli",
+   "jadi": "kali"
+  }
+ ],
+ "saran": [
+  {
+   "nomor": "10",
+   "dari": "terdirl",
+   "usul": "terdiri"
+  },
+  {
+   "nomor": "14a",
+   "dari": "usah",
+   "usul": "upah"
+  },
+  {
+   "nomor": "14d",
+   "dari": "kemidian",
+   "usul": "kemudian"
+  },
+  {
+   "nomor": "16",
+   "dari": "dilapaskan",
+   "usul": "dilepaskan"
+  },
+  {
+   "nomor": "16",
+   "dari": "ahri",
+   "usul": "ahli"
+  },
+  {
+   "nomor": "29",
+   "dari": "menetepkan",
+   "usul": "menetapkan"
+  },
+  {
+   "nomor": "46",
+   "dari": "amal",
+   "usul": "asal"
+  },
+  {
+   "nomor": "85",
+   "dari": "penjalanan",
+   "usul": "perjalanan"
+  },
+  {
+   "nomor": "101",
+   "dari": "babi",
+   "usul": "bagi"
+  },
+  {
+   "nomor": "117",
+   "dari": "gambat",
+   "usul": "gambar"
+  },
+  {
+   "nomor": "117",
+   "dari": "disitu",
+   "usul": "disita"
+  },
+  {
+   "nomor": "179",
+   "dari": "peringntan",
+   "usul": "peringatan"
+  },
+  {
+   "nomor": "182",
+   "dari": "menantang",
+   "usul": "menentang"
+  },
+  {
+   "nomor": "184",
+   "dari": "tmbuh",
+   "usul": "tubuh"
+  },
+  {
+   "nomor": "191",
+   "dari": "menyenabkan",
+   "usul": "menyebabkan"
+  },
+  {
+   "nomor": "197",
+   "dari": "peniara",
+   "usul": "penjara"
+  },
+  {
+   "nomor": "201",
+   "dari": "petbuatan",
+   "usul": "perbuatan"
+  },
+  {
+   "nomor": "204",
+   "dari": "berhahaya",
+   "usul": "berbahaya"
+  },
+  {
+   "nomor": "206",
+   "dari": "pemidahaan",
+   "usul": "pemidanaan"
+  },
+  {
+   "nomor": "206",
+   "dari": "berdasarkah",
+   "usul": "berdasarkan"
+  },
+  {
+   "nomor": "214",
+   "dari": "helas",
+   "usul": "jelas"
+  },
+  {
+   "nomor": "221",
+   "dari": "olsh",
+   "usul": "oleh"
+  },
+  {
+   "nomor": "229",
+   "dari": "atav",
+   "usul": "atau"
+  },
+  {
+   "nomor": "260",
+   "dari": "dihubuhkan",
+   "usul": "dibubuhkan"
+  },
+  {
+   "nomor": "282",
+   "dari": "gambazan",
+   "usul": "gambaran"
+  },
+  {
+   "nomor": "283",
+   "dari": "melykukan",
+   "usul": "melakukan"
+  },
+  {
+   "nomor": "288",
+   "dari": "didugunya",
+   "usul": "diduganya"
+  },
+  {
+   "nomor": "292",
+   "dari": "sesama",
+   "usul": "selama"
+  },
+  {
+   "nomor": "300",
+   "dari": "kelihatan",
+   "usul": "kelipatan"
+  },
+  {
+   "nomor": "303",
+   "dari": "carian",
+   "usul": "harian"
+  },
+  {
+   "nomor": "303",
+   "dari": "agai",
+   "usul": "agar"
+  },
+  {
+   "nomor": "332",
+   "dari": "tezhadap",
+   "usul": "terhadap"
+  },
+  {
+   "nomor": "332",
+   "dari": "bila",
+   "usul": "bisa"
+  },
+  {
+   "nomor": "356",
+   "dari": "herbahaya",
+   "usul": "berbahaya"
+  },
+  {
+   "nomor": "365",
+   "dari": "periniah",
+   "usul": "perintah"
+  },
+  {
+   "nomor": "385",
+   "dari": "heban",
+   "usul": "hewan"
+  },
+  {
+   "nomor": "385",
+   "dari": "yanr",
+   "usul": "yang"
+  },
+  {
+   "nomor": "385",
+   "dari": "bezhubungan",
+   "usul": "berhubungan"
+  },
+  {
+   "nomor": "386",
+   "dari": "diancan",
+   "usul": "diancam"
+  },
+  {
+   "nomor": "386",
+   "dari": "sudab",
+   "usul": "sudah"
+  },
+  {
+   "nomor": "387",
+   "dari": "pemhangunan",
+   "usul": "pembangunan"
+  },
+  {
+   "nomor": "390",
+   "dari": "turun",
+   "usul": "turut"
+  },
+  {
+   "nomor": "393",
+   "dari": "menamarkan",
+   "usul": "menawarkan"
+  },
+  {
+   "nomor": "393",
+   "dari": "untui",
+   "usul": "untuk"
+  },
+  {
+   "nomor": "393",
+   "dari": "sehuah",
+   "usul": "sebuah"
+  },
+  {
+   "nomor": "393",
+   "dari": "tertentangan",
+   "usul": "bertentangan"
+  },
+  {
+   "nomor": "397",
+   "dari": "bezsangkutan",
+   "usul": "bersangkutan"
+  },
+  {
+   "nomor": "399",
+   "dari": "curanp",
+   "usul": "curang"
+  },
+  {
+   "nomor": "399",
+   "dari": "perkumpulai",
+   "usul": "perkumpulan"
+  },
+  {
+   "nomor": "399",
+   "dari": "membuku",
+   "usul": "membuka"
+  },
+  {
+   "nomor": "399",
+   "dari": "Kitat",
+   "usul": "kitab"
+  },
+  {
+   "nomor": "400",
+   "dari": "enan",
+   "usul": "enam"
+  },
+  {
+   "nomor": "401",
+   "dari": "pihal",
+   "usul": "pihak"
+  },
+  {
+   "nomor": "405",
+   "dari": "berkasarkan",
+   "usul": "berdasarkan"
+  },
+  {
+   "nomor": "405",
+   "dari": "berlasarkan",
+   "usul": "berdasarkan"
+  },
+  {
+   "nomor": "413",
+   "dari": "sengaia",
+   "usul": "sengaja"
+  },
+  {
+   "nomor": "415",
+   "dari": "Wang",
+   "usul": "yang"
+  },
+  {
+   "nomor": "422",
+   "dari": "barana",
+   "usul": "barang"
+  },
+  {
+   "nomor": "427",
+   "dari": "sepera",
+   "usul": "segera"
+  },
+  {
+   "nomor": "428",
+   "dari": "menutup",
+   "usul": "penutup"
+  },
+  {
+   "nomor": "428",
+   "dari": "menuzut",
+   "usul": "menurut"
+  },
+  {
+   "nomor": "432",
+   "dari": "pemilikan",
+   "usul": "pemilihan"
+  },
+  {
+   "nomor": "438",
+   "dari": "setelab",
+   "usul": "setelah"
+  },
+  {
+   "nomor": "448",
+   "dari": "kekuasaav",
+   "usul": "kekuasaan"
+  },
+  {
+   "nomor": "449",
+   "dari": "hapal",
+   "usul": "kapal"
+  },
+  {
+   "nomor": "449",
+   "dari": "untul",
+   "usul": "untuk"
+  },
+  {
+   "nomor": "452",
+   "dari": "kapa",
+   "usul": "kata"
+  },
+  {
+   "nomor": "455",
+   "dari": "jara",
+   "usul": "cara"
+  },
+  {
+   "nomor": "455",
+   "dari": "hukun",
+   "usul": "hukum"
+  },
+  {
+   "nomor": "464",
+   "dari": "rupial",
+   "usul": "rupiah"
+  },
+  {
+   "nomor": "479",
+   "dari": "teesebut",
+   "usul": "tersebut"
+  },
+  {
+   "nomor": "479",
+   "dari": "sembilam",
+   "usul": "sembilan"
+  },
+  {
+   "nomor": "479e",
+   "dari": "dengar",
+   "usul": "dengan"
+  },
+  {
+   "nomor": "479j",
+   "dari": "jitu",
+   "usul": "situ"
+  },
+  {
+   "nomor": "484",
+   "dari": "renduga",
+   "usul": "menduga"
+  },
+  {
+   "nomor": "500",
+   "dari": "obet",
+   "usul": "obat"
+  },
+  {
+   "nomor": "515",
+   "dari": "Diamcam",
+   "usul": "diancam"
+  },
+  {
+   "nomor": "516",
+   "dari": "catat",
+   "usul": "cacat"
+  },
+  {
+   "nomor": "520",
+   "dari": "pengurua",
+   "usul": "pengurus"
+  },
+  {
+   "nomor": "541",
+   "dari": "siap",
+   "usul": "tiap"
+  },
+  {
+   "nomor": "544",
+   "dari": "ayam",
+   "usul": "ayat"
+  },
+  {
+   "nomor": "547",
+   "dari": "sakti",
+   "usul": "saksi"
+  },
+  {
+   "nomor": "549",
+   "dari": "kering",
+   "usul": "sering"
+  },
+  {
+   "nomor": "549",
+   "dari": "pelanggar",
+   "usul": "melanggar"
+  }
+ ]
+}

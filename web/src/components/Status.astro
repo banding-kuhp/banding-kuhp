@@ -1,0 +1,8 @@
+---
+import { JENIS } from "../lib/data.js";
+const { entri } = Astro.props;
+---
+<span class="label">{JENIS[entri.jenis] ?? entri.jenis}</span>
+{entri.diverifikasi
+  ? <span class="label ok">Diverifikasi</span>
+  : <span class="label draft" title="Padanan ini dibuat otomatis dari kemiripan teks dan belum diperiksa">Draft, belum diverifikasi</span>}

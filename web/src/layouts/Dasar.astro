@@ -1,0 +1,128 @@
+---
+const { judul, deskripsi = "Bandingkan pasal KUHP lama (WvS) dengan KUHP baru (UU 1/2023): teks berdampingan, padanan pasal dan perbandingan ancaman pidana." } = Astro.props;
+const path = Astro.url.pathname;
+const verifikasi = import.meta.env.PUBLIC_VERIFIKASI;
+const nav = [
+  { href: "/", label: "Cari" },
+  { href: "/daftar-isi", label: "Daftar isi" },
+  { href: "/tentang", label: "Tentang" },
+  ...(verifikasi ? [{ href: "/tinjau", label: "Tinjau" }, { href: verifikasi, label: "Verifikasi" }] : []),
+];
+---
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{judul ? `${judul} · Banding KUHP` : "Banding KUHP: KUHP lama vs KUHP baru"}</title>
+    <meta name="description" content={deskripsi} />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="lewati" href="#isi">Langsung ke isi</a>
+    <header class="kepala">
+      <div class="wadah kepala-isi">
+        <a class="merek" href="/">Banding <span>KUHP</span></a>
+        <nav aria-label="Navigasi utama">
+          <ul>
+            {nav.map((n) => (
+              <li><a href={n.href} aria-current={(n.href === "/" ? path === "/" : path.startsWith(n.href)) ? "page" : undefined}>{n.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main id="isi" class="wadah">
+      <slot />
+    </main>
+    <footer class="kaki">
+      <div class="wadah">
+        <p>&copy; 2026 <a href="https://github.com/banding-kuhp/banding-kuhp">stevenmarp</a>. Hak cipta kode situs Banding KUHP.</p>
+        <p>Alat bantu riset, bukan nasihat hukum. Padanan pasal yang belum diverifikasi masih berupa draft otomatis; selalu periksa teks resmi.</p>
+        <p>Teks KUHP baru: UU 1/2023 (LN 2023 No. 1). Teks KUHP lama: terjemahan BPHN atas Wetboek van Strafrecht. <a href="/tentang">Sumber dan cara verifikasi</a>.</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --primer: #1e3a8a;
+    --primer-teks: #ffffff;
+    --aksen: #b45309;
+    --latar: #f8fafc;
+    --kartu: #ffffff;
+    --teks: #0f172a;
+    --redup: #475569;
+    --bidang: #e9eef5;
+    --garis: #cbd5e1;
+    --naik: #b91c1c;
+    --turun: #15803d;
+    --serif: "EB Garamond", Georgia, "Times New Roman", serif;
+    --sans: "Lato", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --r: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --primer: #93b4ff;
+      --primer-teks: #0b1220;
+      --aksen: #f0b45a;
+      --latar: #0b1220;
+      --kartu: #111a2e;
+      --teks: #e5eaf3;
+      --redup: #a3b0c4;
+      --bidang: #18233b;
+      --garis: #2b3a57;
+      --naik: #f87171;
+      --turun: #4ade80;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--latar); color: var(--teks); font: 16px/1.6 var(--sans); }
+  a { color: var(--primer); text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 3px solid var(--aksen); outline-offset: 2px; border-radius: 4px; }
+  h1, h2, h3 { font-family: var(--serif); line-height: 1.2; font-weight: 600; text-wrap: balance; }
+  h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0.4em 0 0.3em; }
+  h2 { font-size: 1.5rem; margin: 1.6em 0 0.6em; }
+  .wadah { width: min(100% - 2rem, 72rem); margin-inline: auto; }
+  .lewati { position: absolute; left: -999px; top: 0; background: var(--kartu); padding: 0.6rem 1rem; }
+  .lewati:focus { left: 1rem; z-index: 9; }
+  .kepala { border-bottom: 1px solid var(--garis); background: var(--kartu); }
+  .kepala-isi { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.75rem; flex-wrap: wrap; }
+  .merek { font-family: var(--serif); font-size: 1.45rem; font-weight: 600; color: var(--teks); text-decoration: none; }
+  .merek span { color: var(--primer); }
+  .kepala nav ul { display: flex; gap: 0.25rem; list-style: none; margin: 0; padding: 0; }
+  .kepala nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 0.85rem; border-radius: var(--r); color: var(--teks); text-decoration: none; }
+  .kepala nav a:hover { background: var(--bidang); }
+  .kepala nav a[aria-current="page"] { color: var(--primer); font-weight: 700; }
+  main { padding-block: 1.5rem 3rem; }
+  .kaki { border-top: 1px solid var(--garis); color: var(--redup); font-size: 0.9rem; padding-block: 1.5rem; }
+  .kaki p { margin: 0.3rem 0; max-width: 70ch; }
+  .remah { font-size: 0.9rem; color: var(--redup); }
+  .remah a { color: var(--redup); }
+  .kartu { background: var(--kartu); border: 1px solid var(--garis); border-radius: var(--r); padding: 1.25rem 1.4rem; }
+  .teks-pasal { font-family: var(--serif); font-size: 1.2rem; line-height: 1.7; max-width: 70ch; }
+  .teks-pasal p { margin: 0 0 0.7em; }
+  .teks-pasal p.sub { padding-left: 1.6em; }
+  .label { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.02em; padding: 0.2rem 0.6rem; border-radius: 999px; border: 1px solid var(--garis); background: var(--bidang); color: var(--teks); white-space: nowrap; }
+  .label.draft { border-color: var(--aksen); color: var(--aksen); background: transparent; }
+  .label.ok { border-color: var(--turun); color: var(--turun); background: transparent; }
+  .redup { color: var(--redup); }
+  .tombol { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 1.1rem; border-radius: var(--r); background: var(--primer); color: var(--primer-teks); font-weight: 700; text-decoration: none; border: 0; cursor: pointer; }
+  .tombol:hover { filter: brightness(1.1); text-decoration: none; }
+  .tombol.garis { background: transparent; color: var(--primer); border: 1px solid var(--primer); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+  th, td { text-align: left; padding: 0.55rem 0.6rem; border-bottom: 1px solid var(--garis); vertical-align: top; }
+  th { color: var(--redup); font-weight: 700; font-size: 0.85rem; }
+  details > summary { cursor: pointer; min-height: 44px; padding-block: 0.55rem; }
+  details > summary > h2, details > summary > h3 { display: inline; }
+  @media (prefers-reduced-motion: no-preference) {
+    a, .tombol, .kepala nav a { transition: background-color 0.2s, filter 0.2s; }
+  }
+</style>

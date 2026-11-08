@@ -1,0 +1,11 @@
+---
+const { teks = [] } = Astro.props;
+const sub = (p) => /^([a-z]\.|\d+\.|[a-z]\))\s/.test(p);
+const judul = (p) => /^(Ayat \(\d+[a-z]?\)|Huruf [a-z]{1,2}|Angka \d+)$/.test(p);
+---
+<div class="teks-pasal">
+  {teks.length ? teks.map((p) => judul(p) ? <p class="subjudul">{p}</p> : <p class={sub(p) ? "sub" : undefined}>{p}</p>) : <p class="redup">Teks pasal ini belum tersedia di sumber yang dipakai.</p>}
+</div>
+<style>
+  .subjudul { font-family: var(--sans); font-size: 0.95rem; font-weight: 700; color: var(--redup); margin: 1em 0 0.2em; }
+</style>

@@ -1,0 +1,76 @@
+---
+import Dasar from "../../layouts/Dasar.astro";
+import TeksPasal from "../../components/TeksPasal.astro";
+import Status from "../../components/Status.astro";
+import { baru, pasalLama, keBaru, BUKU_BARU } from "../../lib/data.js";
+
+export function getStaticPaths() {
+  return baru.map((p) => ({ params: { nomor: p.nomor }, props: { p } }));
+}
+const { p } = Astro.props;
+const entri = keBaru(p.nomor);
+const asal = entri.filter((e) => e.lama.length);
+const ubah = (p.perubahan ?? []).find((x) => x.jenis !== "penjelasan");
+const teksUbah = { diubah: "Diubah", dihapus: "Dihapus", disisipkan: "Disisipkan" };
+const verifikasi = import.meta.env.PUBLIC_VERIFIKASI;
+---
+<Dasar judul={`Pasal ${p.nomor} KUHP baru`} deskripsi={`Pasal ${p.nomor} UU 1/2023 tentang KUHP beserta penjelasan dan asalnya di KUHP lama.`}>
+  <p class="remah"><a href="/daftar-isi#baru">KUHP baru</a> › {BUKU_BARU[p.buku]} › Bab {p.bab} {p.judul_bab}</p>
+  <h1>Pasal {p.nomor} KUHP baru</h1>
+  <div class="dua">
+    <div>
+      {ubah && (
+        <div class="kartu ubah" role="note">
+          <p><span class="label draft">{teksUbah[ubah.jenis]} oleh {ubah.oleh}</span> Pasal VII angka {ubah.butir} UU 1/2026 tentang Penyesuaian Pidana. Bunyi di bawah adalah bunyi yang berlaku.</p>
+          <p class="redup">Teks perubahan diambil dari salinan pindaian UU 1/2026 dan belum dibaca ulang manusia.</p>
+        </div>
+      )}
+      <section class="kartu" aria-labelledby="teks-baru">
+        <h2 id="teks-baru" class="kecil">{ubah ? "Bunyi pasal (berlaku)" : "Bunyi pasal"}</h2>
+        <TeksPasal teks={p.teks} />
+      </section>
+      {p.teks_asli?.length > 0 && (
+        <details class="kartu penjelasan">
+          <summary><h2 class="kecil" style="margin:0">Bunyi sebelum UU 1/2026</h2></summary>
+          <TeksPasal teks={p.teks_asli} />
+        </details>
+      )}
+      {p.penjelasan?.length > 0 && (
+        <details class="kartu penjelasan" open>
+          <summary><h2 class="kecil" style="margin:0">Penjelasan{p.penjelasan_diubah ? " (UU 1/2023, diubah oleh UU 1/2026)" : ""}</h2></summary>
+          <TeksPasal teks={p.penjelasan} />
+        </details>
+      )}
+    </div>
+    <section aria-labelledby="asal">
+      <h2 id="asal" class="kecil">Asal di KUHP lama</h2>
+      {asal.length ? asal.map((e) => (
+        <div class="kartu padanan">
+          <p><Status entri={e} /></p>
+          {e.lama.map((n) => (
+            <h3><a href={`/kuhp-lama/${n}`}>Pasal {n} KUHP lama</a></h3>
+            <p class="redup">Bab {pasalLama.get(n)?.bab} {pasalLama.get(n)?.judul_bab}</p>
+            <p><a class="tombol garis" href={`/banding/${n}-${p.nomor}`}>Bandingkan berdampingan</a>{verifikasi && <> <a class="tombol garis" href={`${verifikasi}/?lama=${n}`}>Verifikasi</a></>}</p>
+          ))}
+        </div>
+      )) : (
+        <div class="kartu padanan">
+          <p>{entri[0] && <Status entri={entri[0]} />}</p>
+          <p>Pencocokan otomatis tidak menemukan asal pasal ini di KUHP lama, jadi kemungkinan ini pengaturan baru.</p>
+          {verifikasi && <p><a class="tombol garis" href={`${verifikasi}/?baru=${p.nomor}`}>Verifikasi sebagai pasal baru</a></p>}
+        </div>
+      )}
+    </section>
+  </div>
+</Dasar>
+<style>
+  .dua { display: grid; gap: 1.25rem; }
+  @media (min-width: 960px) { .dua { grid-template-columns: 1.15fr 1fr; align-items: start; } }
+  .kecil { font-size: 1.15rem; margin-top: 0; font-family: var(--sans); color: var(--redup); font-weight: 700; }
+  .penjelasan { margin-top: 1rem; }
+  .ubah { margin-bottom: 1rem; border-color: var(--aksen); }
+  .ubah p { margin: 0.2rem 0; }
+  .padanan + .padanan { margin-top: 1rem; }
+  .padanan h3 { margin: 0.6rem 0 0.1rem; font-size: 1.35rem; }
+  .padanan p { margin: 0.3rem 0 0.8rem; }
+</style>

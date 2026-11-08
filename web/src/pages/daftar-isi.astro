@@ -1,0 +1,48 @@
+---
+import Dasar from "../layouts/Dasar.astro";
+import { lama, baru, BUKU_LAMA, BUKU_BARU } from "../lib/data.js";
+
+function kelompok(daftar) {
+  const buku = new Map();
+  for (const p of daftar) {
+    if (!buku.has(p.buku)) buku.set(p.buku, new Map());
+    const bab = buku.get(p.buku);
+    const kunci = `Bab ${p.bab} ${p.judul_bab}`;
+    if (!bab.has(kunci)) bab.set(kunci, []);
+    bab.get(kunci).push(p);
+  }
+  return buku;
+}
+const bagian = [
+  { id: "lama", judul: "KUHP lama (Wetboek van Strafrecht)", buku: kelompok(lama), nama: BUKU_LAMA, awal: "kuhp-lama" },
+  { id: "baru", judul: "KUHP baru (UU 1/2023)", buku: kelompok(baru), nama: BUKU_BARU, awal: "kuhp-baru" },
+];
+---
+<Dasar judul="Daftar isi">
+  <h1>Daftar isi</h1>
+  <p class="lompat"><a href="#lama">KUHP lama</a> · <a href="#baru">KUHP baru</a></p>
+  {bagian.map((s) => (
+    <section id={s.id} aria-labelledby={`judul-${s.id}`}>
+      <h2 id={`judul-${s.id}`}>{s.judul}</h2>
+      {[...s.buku].map(([nomor, bab]) => (
+        <div class="buku">
+          <h3>{s.nama[nomor]}</h3>
+          {[...bab].map(([judul, pasal]) => (
+            <details class="bab">
+              <summary>{judul} <span class="redup">({pasal.length} pasal)</span></summary>
+              <ul>{pasal.map((p) => <li><a href={`/${s.awal}/${p.nomor}`}>{p.nomor}</a></li>)}</ul>
+            </details>
+          ))}
+        </div>
+      ))}
+    </section>
+  ))}
+</Dasar>
+<style>
+  .buku h3 { font-size: 1.25rem; margin: 1.2rem 0 0.4rem; }
+  .bab { border-bottom: 1px solid var(--garis); }
+  .bab summary { padding: 0.3rem 0; }
+  .bab ul { list-style: none; padding: 0 0 0.8rem; margin: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .bab li a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 0 0.5rem; border: 1px solid var(--garis); border-radius: var(--r); background: var(--kartu); text-decoration: none; }
+  .bab li a:hover { border-color: var(--primer); }
+</style>

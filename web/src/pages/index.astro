@@ -1,0 +1,106 @@
+---
+import Dasar from "../layouts/Dasar.astro";
+import { peta, lama, baru } from "../lib/data.js";
+const pasangan = peta.filter((e) => e.lama.length && e.baru.length);
+const terverifikasi = pasangan.filter((e) => e.diverifikasi).length;
+const populer = [["362", "Pencurian"], ["338", "Pembunuhan"], ["340", "Pembunuhan berencana"], ["351", "Penganiayaan"], ["372", "Penggelapan"], ["378", "Penipuan"], ["310", "Pencemaran nama baik"], ["284", "Perzinaan"]];
+---
+<Dasar>
+  <section class="pahlawan">
+    <h1>Bandingkan KUHP lama dengan KUHP baru</h1>
+    <p class="redup lead">Cari nomor pasal atau kata kunci. Lihat padanannya di UU 1/2023 dan perbandingan ancaman pidananya.</p>
+    <form id="cari" role="search" onsubmit="return false">
+      <label for="q">Nomor pasal atau kata kunci</label>
+      <div class="baris">
+        <input id="q" name="q" type="search" autocomplete="off" placeholder="mis. 362 atau pencurian" />
+      </div>
+      <fieldset>
+        <legend class="sr">Cari di</legend>
+        <label><input type="radio" name="di" value="lama" checked /> KUHP lama</label>
+        <label><input type="radio" name="di" value="baru" /> KUHP baru</label>
+        <label><input type="radio" name="di" value="semua" /> Keduanya</label>
+      </fieldset>
+    </form>
+    <p id="status" class="redup" aria-live="polite"></p>
+    <ol id="hasil" class="hasil"></ol>
+  </section>
+
+  <section aria-labelledby="sering">
+    <h2 id="sering">Sering dicari</h2>
+    <ul class="ubin">
+      {populer.map(([n, j]) => <li><a href={`/kuhp-lama/${n}`}><strong>Pasal {n}</strong><span>{j}</span></a></li>)}
+    </ul>
+  </section>
+
+  <section class="kartu ringkas" aria-labelledby="angka">
+    <h2 id="angka">Isi data</h2>
+    <p><strong>{lama.length}</strong> pasal KUHP lama, <strong>{baru.length}</strong> pasal KUHP baru, <strong>{pasangan.length}</strong> pasangan padanan.</p>
+    <p><span class="label draft">{terverifikasi} dari {pasangan.length} pasangan sudah diverifikasi</span> Sisanya draft otomatis dari kemiripan teks. <a href="/tentang#verifikasi">Cara verifikasi</a>.</p>
+  </section>
+
+  <script>
+    const q = document.getElementById("q");
+    const hasil = document.getElementById("hasil");
+    const status = document.getElementById("status");
+    let indeks = null;
+    const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+    const nama = { lama: "KUHP lama", baru: "KUHP baru" };
+
+    async function muat() {
+      if (!indeks) indeks = await (await fetch("/indeks.json")).json();
+      return indeks;
+    }
+    function cuplik(teks, kata) {
+      const rendah = teks.toLowerCase();
+      const i = kata.length ? Math.max(0, rendah.indexOf(kata[0]) - 60) : 0;
+      let c = esc(teks.slice(i, i + 220)) + (teks.length > i + 220 ? "…" : "");
+      for (const k of kata) c = c.replace(new RegExp(`(${k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi"), "<mark>$1</mark>");
+      return (i > 0 ? "…" : "") + c;
+    }
+    async function cari() {
+      const nilai = q.value.trim().toLowerCase();
+      const di = document.querySelector("input[name=di]:checked").value;
+      if (!nilai) { hasil.innerHTML = ""; status.textContent = ""; return; }
+      const data = (await muat()).filter((p) => di === "semua" || p.k === di);
+      let temu;
+      if (/^\d+[a-z]?$/.test(nilai)) {
+        temu = data.filter((p) => p.n === nilai).concat(data.filter((p) => p.n !== nilai && p.n.startsWith(nilai)));
+      } else {
+        const kata = nilai.split(/\s+/).filter((k) => k.length > 1);
+        temu = data.map((p) => ({ p, s: kata.every((k) => p.t.toLowerCase().includes(k)) ? kata.reduce((a, k) => a + p.t.toLowerCase().split(k).length - 1, 0) : 0 }))
+          .filter((x) => x.s).sort((a, b) => b.s - a.s).map((x) => x.p);
+      }
+      const kata = /^\d+[a-z]?$/.test(nilai) ? [] : nilai.split(/\s+/).filter((k) => k.length > 1);
+      status.textContent = temu.length ? `${temu.length} pasal ditemukan${temu.length > 30 ? ", 30 teratas ditampilkan" : ""}.` : "Tidak ada pasal yang cocok.";
+      hasil.innerHTML = temu.slice(0, 30).map((p) => `<li><a href="/kuhp-${p.k}/${esc(p.n)}"><strong>Pasal ${esc(p.n)} ${nama[p.k]}</strong> <span class="bab">${esc(p.b)}</span><span class="cuplik">${cuplik(p.t, kata)}</span></a></li>`).join("");
+    }
+    let tunda;
+    q.addEventListener("input", () => { clearTimeout(tunda); tunda = setTimeout(cari, 150); });
+    document.querySelectorAll("input[name=di]").forEach((r) => r.addEventListener("change", cari));
+    const awal = new URLSearchParams(location.search).get("q");
+    if (awal) { q.value = awal; cari(); }
+  </script>
+</Dasar>
+<style>
+  .pahlawan { padding-block: 1.5rem 0.5rem; }
+  .lead { font-size: 1.15rem; max-width: 60ch; }
+  form label[for="q"] { display: block; font-weight: 700; margin: 1.25rem 0 0.4rem; }
+  .baris input { width: 100%; max-width: 44rem; min-height: 56px; font: inherit; font-size: 1.2rem; padding: 0 1rem; border: 2px solid var(--garis); border-radius: var(--r); background: var(--kartu); color: var(--teks); }
+  .baris input:focus { border-color: var(--primer); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--primer) 30%, transparent); }
+  fieldset { border: 0; padding: 0; margin: 0.8rem 0 0; display: flex; gap: 0.4rem 1.2rem; flex-wrap: wrap; }
+  fieldset label { display: inline-flex; align-items: center; gap: 0.4rem; min-height: 44px; cursor: pointer; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .hasil { list-style: none; padding: 0; margin: 0.5rem 0 0; max-width: 52rem; }
+  .hasil :global(li a) { display: block; padding: 0.85rem 1rem; border: 1px solid var(--garis); border-radius: var(--r); background: var(--kartu); color: var(--teks); text-decoration: none; margin-bottom: 0.6rem; }
+  .hasil :global(li a:hover) { border-color: var(--primer); }
+  .hasil :global(.bab) { color: var(--redup); font-size: 0.9rem; margin-left: 0.4rem; }
+  .hasil :global(.cuplik) { display: block; margin-top: 0.3rem; font-family: var(--serif); font-size: 1.05rem; }
+  .hasil :global(mark) { background: color-mix(in srgb, var(--aksen) 28%, transparent); color: inherit; }
+  .ubin { list-style: none; padding: 0; display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); }
+  .ubin a { display: flex; flex-direction: column; padding: 0.9rem 1rem; border: 1px solid var(--garis); border-radius: var(--r); background: var(--kartu); text-decoration: none; color: var(--teks); }
+  .ubin a:hover { border-color: var(--primer); }
+  .ubin strong { font-family: var(--serif); font-size: 1.3rem; color: var(--primer); }
+  .ubin span { color: var(--redup); font-size: 0.95rem; }
+  .ringkas { margin-top: 2rem; }
+  .ringkas h2 { margin-top: 0; }
+</style>

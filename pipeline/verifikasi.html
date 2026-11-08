@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Verifikasi padanan · Banding KUHP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root { --primer:#1e3a8a; --primer-teks:#fff; --aksen:#b45309; --latar:#f8fafc; --kartu:#fff; --teks:#0f172a; --redup:#475569; --bidang:#e9eef5; --garis:#cbd5e1; --ok:#15803d; --galat:#b91c1c; --r:8px;
+    --serif:"EB Garamond", Georgia, serif; --sans:"Lato", system-ui, sans-serif; }
+  @media (prefers-color-scheme: dark) { :root { --primer:#93b4ff; --primer-teks:#0b1220; --aksen:#f0b45a; --latar:#0b1220; --kartu:#111a2e; --teks:#e5eaf3; --redup:#a3b0c4; --bidang:#18233b; --garis:#2b3a57; --ok:#4ade80; --galat:#f87171; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--latar); color:var(--teks); font:16px/1.55 var(--sans); padding-bottom:12rem; }
+  :focus-visible { outline:3px solid var(--aksen); outline-offset:2px; border-radius:4px; }
+  header { position:sticky; top:0; z-index:2; background:var(--kartu); border-bottom:1px solid var(--garis); padding:.7rem 1rem; display:flex; flex-wrap:wrap; gap:.6rem 1.2rem; align-items:center; }
+  header h1 { font:600 1.25rem var(--serif); margin:0; }
+  .progres { flex:1 1 26rem; font-size:.9rem; }
+  .bar { height:8px; background:var(--bidang); border-radius:99px; overflow:hidden; }
+  .bar span { display:block; height:100%; background:var(--ok); }
+  label.kecil { font-size:.85rem; color:var(--redup); display:inline-flex; gap:.4rem; align-items:center; }
+  select, input[type=text], textarea { font:inherit; color:var(--teks); background:var(--kartu); border:1px solid var(--garis); border-radius:var(--r); min-height:40px; padding:0 .6rem; }
+  textarea { padding:.5rem .6rem; width:100%; min-height:44px; resize:vertical; }
+  main { display:grid; gap:1rem; padding:1rem; max-width:90rem; margin:auto; }
+  @media (min-width:1000px) { main { grid-template-columns:1fr 1fr; align-items:start; } }
+  .kartu { background:var(--kartu); border:1px solid var(--garis); border-radius:var(--r); padding:1rem 1.2rem; }
+  .kartu h2 { font:600 1.45rem var(--serif); margin:.1rem 0 .1rem; }
+  .bab { color:var(--redup); font-size:.92rem; margin:0 0 .6rem; }
+  .teks p { font:1.12rem/1.65 var(--serif); margin:0 0 .55em; }
+  .teks p.sub { padding-left:1.4em; }
+  mark { background:color-mix(in srgb, var(--aksen) 26%, transparent); color:inherit; border-radius:2px; }
+  .calon { display:flex; flex-wrap:wrap; gap:.5rem; margin:.4rem 0 .8rem; }
+  .calon label { display:inline-flex; align-items:center; gap:.45rem; min-height:44px; padding:0 .8rem; border:1px solid var(--garis); border-radius:var(--r); cursor:pointer; background:var(--latar); }
+  .calon label:has(input:checked) { border-color:var(--primer); box-shadow:inset 0 0 0 1px var(--primer); }
+  .calon small { color:var(--redup); }
+  .lain { display:flex; gap:.5rem; align-items:center; flex-wrap:wrap; margin-bottom:.8rem; }
+  .pratinjau > div + div { border-top:1px dashed var(--garis); margin-top:.8rem; padding-top:.8rem; }
+  .pratinjau h3 { font:600 1.2rem var(--serif); margin:0; }
+  footer { position:fixed; left:0; right:0; bottom:0; background:var(--kartu); border-top:1px solid var(--garis); padding:.7rem 1rem; z-index:2; }
+  .baris { display:flex; flex-wrap:wrap; gap:.5rem 1rem; align-items:center; max-width:90rem; margin:auto; }
+  fieldset { border:0; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.3rem .9rem; }
+  fieldset label { display:inline-flex; gap:.35rem; align-items:center; min-height:40px; cursor:pointer; }
+  .tombol { min-height:44px; padding:0 1rem; border-radius:var(--r); border:1px solid var(--primer); background:transparent; color:var(--primer); font:700 .95rem var(--sans); cursor:pointer; }
+  .tombol.utama { background:var(--primer); color:var(--primer-teks); }
+  .tombol:hover { filter:brightness(1.08); }
+  .catatan { flex:1 1 18rem; }
+  #status { font-size:.9rem; min-height:1.3em; }
+  #status.ok { color:var(--ok); } #status.galat { color:var(--galat); }
+  .label { display:inline-block; font-size:.78rem; font-weight:700; padding:.12rem .55rem; border-radius:99px; border:1px solid var(--garis); }
+  .label.ok { color:var(--ok); border-color:var(--ok); } .label.draft { color:var(--aksen); border-color:var(--aksen); }
+  kbd { font:.8rem ui-monospace, monospace; border:1px solid var(--garis); border-bottom-width:2px; border-radius:4px; padding:0 .3rem; }
+  .bantuan { color:var(--redup); font-size:.82rem; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Verifikasi padanan</h1>
+  <div class="progres" aria-live="polite"><div id="angka">Memuat…</div><div class="bar" aria-hidden="true"><span id="isi-bar" style="width:0"></span></div></div>
+  <label class="kecil">Antrian <select id="antrian"><option value="lama">Pasal lama</option><option value="baru">Pasal baru tanpa asal</option></select></label>
+  <label class="kecil">Tampilkan <select id="saring"><option value="belum">Belum diverifikasi</option><option value="semua">Semua</option><option value="sudah">Sudah diverifikasi</option></select></label>
+  <label class="kecil">Urut <select id="urut"><option value="nomor">Nomor pasal</option><option value="skor">Kemiripan terendah dulu</option></select></label>
+  <label class="kecil">Ke pasal <input id="loncat" type="text" inputmode="numeric" size="6" placeholder="mis. 338"></label>
+  <a class="tombol" href="__SITUS__/tinjau" target="situs">Buka situs</a>
+  <button class="tombol utama" id="bangun" type="button">Perbarui situs</button>
+  <span id="status-bangun" class="bantuan" role="status"></span>
+</header>
+<main>
+  <section class="kartu" aria-labelledby="judul-kiri"><h2 id="judul-kiri"></h2><p class="bab" id="bab-kiri"></p><div class="teks" id="teks-kiri"></div><p><a id="ke-situs" href="__SITUS__" target="situs">Lihat di situs</a></p></section>
+  <section class="kartu" aria-labelledby="judul-kanan">
+    <h2 id="judul-kanan">Padanan di KUHP baru</h2>
+    <div id="calon" class="calon" role="group" aria-label="Kandidat pasal KUHP baru"></div>
+    <div class="lain"><label for="nomor-lain">Nomor lain</label><input id="nomor-lain" type="text" placeholder="mis. 458 atau 458, 459"><button class="tombol" id="tambah" type="button">Tambah</button>
+      <label class="kecil"><input type="checkbox" id="sorot" checked> Sorot kata yang tidak ada di pasal lama</label></div>
+    <div class="pratinjau" id="pratinjau"></div>
+  </section>
+</main>
+<footer>
+  <div class="baris">
+    <fieldset id="jenis"><legend class="kecil">Jenis perubahan</legend>
+      <label><input type="radio" name="jenis" value="tetap"> Tetap</label>
+      <label><input type="radio" name="jenis" value="diubah" checked> Diubah</label>
+      <label><input type="radio" name="jenis" value="digabung"> Digabung</label>
+      <label><input type="radio" name="jenis" value="dipecah"> Dipecah</label>
+      <label><input type="radio" name="jenis" value="dipindah"> Dipindah</label>
+      <label><input type="radio" name="jenis" value="dihapus"> Tidak ada padanan</label>
+    </fieldset>
+    <div class="catatan"><label class="kecil" for="catatan">Catatan (opsional)</label><textarea id="catatan" rows="1"></textarea></div>
+  </div>
+  <div class="baris" style="margin-top:.5rem">
+    <button class="tombol" id="sebelum" type="button">← Sebelumnya</button>
+    <button class="tombol" id="lewati" type="button">Lewati →</button>
+    <button class="tombol" id="batal" type="button">Batalkan verifikasi</button>
+    <button class="tombol utama" id="simpan" type="button">Simpan &amp; lanjut (Enter)</button>
+    <span id="status" role="status"></span>
+    <span class="bantuan"><kbd>1</kbd>–<kbd>9</kbd> pilih kandidat · <kbd>N</kbd> tidak ada padanan · <kbd>←</kbd> <kbd>→</kbd> pindah</span>
+  </div>
+</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const SITUS = "__SITUS__";
+let D, antrian = [], posisi = 0, dipilih = [];
+const sub = (p) => /^([a-z]\.|\d+\.|[a-z]\))\s/.test(p);
+const kata = (t) => new Set(t.toLowerCase().match(/[a-z0-9]+/g) || []);
+
+function paragraf(el, teks, sorot) {
+  el.replaceChildren();
+  for (const p of teks.length ? teks : ["(teks belum tersedia)"]) {
+    const n = document.createElement("p");
+    if (sub(p)) n.className = "sub";
+    for (const bagian of p.split(/(\s+)/)) {
+      const w = bagian.toLowerCase().replace(/[^a-z0-9]/g, "");
+      if (sorot && w && !sorot.has(w)) { const m = document.createElement("mark"); m.textContent = bagian; n.append(m); }
+      else n.append(bagian);
+    }
+    el.append(n);
+  }
+}
+
+function susun() {
+  const mode = $("antrian").value, saring = $("saring").value;
+  antrian = D.peta.filter((e) => mode === "lama" ? e.lama.length : !e.lama.length)
+    .filter((e) => saring === "semua" || (saring === "sudah") === !!e.diverifikasi);
+  if ($("urut").value === "skor") antrian.sort((a, b) => a.skor - b.skor);
+  posisi = Math.min(posisi, Math.max(0, antrian.length - 1));
+  hitung();
+  tampil();
+}
+
+function hitung() {
+  const lama = D.peta.filter((e) => e.lama.length), sudah = lama.filter((e) => e.diverifikasi).length;
+  const baru = D.peta.filter((e) => !e.lama.length), sudahBaru = baru.filter((e) => e.diverifikasi).length;
+  $("angka").textContent = `${sudah} dari ${lama.length} pasal lama diverifikasi · ${sudahBaru} dari ${baru.length} pasal baru tanpa asal · antrian ${antrian.length ? posisi + 1 : 0}/${antrian.length}`;
+  $("isi-bar").style.width = `${(100 * sudah) / Math.max(1, lama.length)}%`;
+}
+
+function tampil() {
+  const e = antrian[posisi];
+  $("status").textContent = "";
+  if (!e) { $("judul-kiri").textContent = "Antrian kosong"; $("teks-kiri").replaceChildren(); $("calon").replaceChildren(); $("pratinjau").replaceChildren(); $("bab-kiri").textContent = ""; return; }
+  const mode = $("antrian").value;
+  if (mode === "lama") {
+    const p = D.L.get(e.lama[0]);
+    $("judul-kiri").replaceChildren(`Pasal ${p.nomor} KUHP lama `, label(e));
+    $("bab-kiri").textContent = `Buku ${p.buku} · Bab ${p.bab} ${p.judul_bab}`;
+    paragraf($("teks-kiri"), p.teks);
+    const k = D.keputusan.lama[p.nomor];
+    dipilih = [...(k ? k.baru : e.baru)];
+    const nomor = [...new Set([...e.baru, ...e.kandidat.map((c) => c.nomor), ...dipilih])];
+    calon(nomor, e);
+    pilihJenis(k ? k.jenis : (e.baru.length ? "diubah" : "dihapus"));
+    $("catatan").value = k ? k.catatan || "" : "";
+    $("jenis").disabled = false;
+    $("ke-situs").href = `${SITUS}/kuhp-lama/${p.nomor}`;
+  } else {
+    const q = D.B.get(e.baru[0]);
+    $("judul-kiri").replaceChildren(`Pasal ${q.nomor} KUHP baru `, label(e));
+    $("bab-kiri").textContent = `Bab ${q.bab} ${q.judul_bab} · tidak ada pasal lama yang menunjuk ke sini`;
+    paragraf($("teks-kiri"), q.teks);
+    dipilih = [];
+    calon([], e);
+    $("catatan").value = (D.keputusan.baru[q.nomor] || {}).catatan || "";
+    pilihJenis("baru");
+    $("jenis").disabled = true;
+    $("ke-situs").href = `${SITUS}/kuhp-baru/${q.nomor}`;
+  }
+  pratinjau();
+}
+
+function label(e) {
+  const s = document.createElement("span");
+  s.className = e.diverifikasi ? "label ok" : "label draft";
+  s.textContent = e.diverifikasi ? "Diverifikasi" : "Draft";
+  return s;
+}
+
+function calon(nomor, e) {
+  const box = $("calon");
+  box.replaceChildren();
+  nomor.forEach((n, i) => {
+    const q = D.B.get(n);
+    const skor = (e.kandidat.find((c) => c.nomor === n) || {}).skor;
+    const l = document.createElement("label");
+    const c = document.createElement("input");
+    c.type = "checkbox"; c.value = n; c.checked = dipilih.includes(n);
+    c.addEventListener("change", () => { dipilih = c.checked ? [...dipilih, n] : dipilih.filter((x) => x !== n); if (dipilih.length && jenisNow() === "dihapus") pilihJenis("diubah"); pratinjau(); });
+    const s = document.createElement("small");
+    s.textContent = `${skor != null ? Math.round(skor * 100) + "% · " : ""}Bab ${q ? q.bab : "?"}`;
+    l.append(c, ` ${i + 1}. Pasal ${n} `, s);
+    box.append(l);
+  });
+  if (!nomor.length && $("antrian").value === "lama") box.textContent = "Tidak ada kandidat. Ketik nomornya di bawah, atau pilih Tidak ada padanan.";
+}
+
+function pratinjau() {
+  const box = $("pratinjau");
+  box.replaceChildren();
+  const asal = $("antrian").value === "lama" ? D.L.get(antrian[posisi].lama[0]) : null;
+  const sorot = $("sorot").checked && asal ? kata(asal.teks.join(" ")) : null;
+  for (const n of dipilih) {
+    const q = D.B.get(n);
+    const d = document.createElement("div");
+    const h = document.createElement("h3"); h.textContent = `Pasal ${n} KUHP baru`;
+    const b = document.createElement("p"); b.className = "bab"; b.textContent = q ? `Bab ${q.bab} ${q.judul_bab}` : "";
+    const t = document.createElement("div"); t.className = "teks";
+    paragraf(t, q ? q.teks : [], sorot);
+    d.append(h, b, t);
+    box.append(d);
+  }
+}
+
+const jenisNow = () => (document.querySelector("input[name=jenis]:checked") || {}).value;
+function pilihJenis(v) { const r = document.querySelector(`input[name=jenis][value="${v}"]`); if (r) r.checked = true; }
+
+async function kirim(isi) {
+  const r = await fetch("/api/putus", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(isi) });
+  const j = await r.json();
+  if (!r.ok) throw new Error(j.galat || "Gagal menyimpan");
+  return j;
+}
+
+async function simpan() {
+  const e = antrian[posisi];
+  if (!e) return;
+  const mode = $("antrian").value, catatan = $("catatan").value.trim();
+  try {
+    if (mode === "lama") {
+      const jenis = jenisNow();
+      await kirim({ lama: e.lama[0], baru: jenis === "dihapus" ? [] : dipilih, jenis, catatan });
+    } else {
+      await kirim({ pasal_baru: e.baru[0], catatan });
+    }
+    await muat(false);
+    $("status").className = "ok"; $("status").textContent = "Tersimpan.";
+  } catch (err) { $("status").className = "galat"; $("status").textContent = err.message; }
+}
+
+async function batalkan() {
+  const e = antrian[posisi];
+  if (!e) return;
+  await kirim({ hapus: e.lama[0] || e.baru[0] });
+  await muat(false);
+}
+
+async function muat(awal) {
+  const nomorKini = antrian[posisi] && (antrian[posisi].lama[0] || antrian[posisi].baru[0]);
+  D = await (await fetch("/api/data")).json();
+  D.L = new Map(D.lama.map((p) => [p.nomor, p]));
+  D.B = new Map(D.baru.map((p) => [p.nomor, p]));
+  const sebelum = antrian.length;
+  susun();
+  if (!awal && $("saring").value !== "belum" && nomorKini) {
+    const i = antrian.findIndex((e) => (e.lama[0] || e.baru[0]) === nomorKini);
+    if (i >= 0) { posisi = Math.min(i + 1, antrian.length - 1); hitung(); tampil(); }
+  }
+}
+
+$("antrian").addEventListener("change", () => { posisi = 0; susun(); });
+$("saring").addEventListener("change", () => { posisi = 0; susun(); });
+$("urut").addEventListener("change", () => { posisi = 0; susun(); });
+$("loncat").addEventListener("change", () => {
+  const v = $("loncat").value.trim();
+  const i = antrian.findIndex((e) => (e.lama[0] || e.baru[0]) === v);
+  if (i >= 0) { posisi = i; hitung(); tampil(); } else { $("status").className = "galat"; $("status").textContent = `Pasal ${v} tidak ada di antrian ini.`; }
+});
+$("tambah").addEventListener("click", () => {
+  const nomor = $("nomor-lain").value.split(/[,\s]+/).map((s) => s.trim().toUpperCase()).filter(Boolean);
+  const salah = nomor.filter((n) => !D.B.has(n));
+  if (salah.length) { $("status").className = "galat"; $("status").textContent = `Pasal KUHP baru tidak ada: ${salah.join(", ")}`; return; }
+  dipilih = [...new Set([...dipilih, ...nomor])];
+  const e = antrian[posisi];
+  calon([...new Set([...e.baru, ...e.kandidat.map((c) => c.nomor), ...dipilih])], e);
+  if (jenisNow() === "dihapus") pilihJenis("diubah");
+  $("nomor-lain").value = "";
+  pratinjau();
+});
+$("sorot").addEventListener("change", pratinjau);
+$("simpan").addEventListener("click", simpan);
+$("lewati").addEventListener("click", () => { posisi = Math.min(posisi + 1, antrian.length - 1); hitung(); tampil(); });
+$("sebelum").addEventListener("click", () => { posisi = Math.max(posisi - 1, 0); hitung(); tampil(); });
+$("batal").addEventListener("click", batalkan);
+document.addEventListener("keydown", (ev) => {
+  const t = ev.target.tagName;
+  if (t === "TEXTAREA" || (t === "INPUT" && ev.target.type === "text") || t === "SELECT") return;
+  if (ev.key === "Enter") { ev.preventDefault(); simpan(); }
+  else if (ev.key === "ArrowRight") $("lewati").click();
+  else if (ev.key === "ArrowLeft") $("sebelum").click();
+  else if (ev.key.toLowerCase() === "n" && $("antrian").value === "lama") { dipilih = []; pilihJenis("dihapus"); calon([...new Set([...antrian[posisi].baru, ...antrian[posisi].kandidat.map((c) => c.nomor)])], antrian[posisi]); pratinjau(); }
+  else if (/^[1-9]$/.test(ev.key)) { const c = document.querySelectorAll("#calon input")[+ev.key - 1]; if (c) { c.checked = !c.checked; c.dispatchEvent(new Event("change")); } }
+});
+async function pantauBangun() {
+  const s = await (await fetch("/api/bangun")).json();
+  $("status-bangun").textContent = s.jalan ? "Membangun ulang situs…" : s.ok === null ? "" : s.ok ? `Situs diperbarui ${s.waktu}: ${s.pesan}` : `Gagal: ${s.pesan}`;
+  $("bangun").disabled = s.jalan;
+  if (s.jalan) setTimeout(pantauBangun, 1500);
+}
+$("bangun").addEventListener("click", async () => { await fetch("/api/bangun", { method: "POST" }); pantauBangun(); });
+
+async function mulai() {
+  await muat(true);
+  const q = new URLSearchParams(location.search);
+  const nomor = q.get("lama") || q.get("baru");
+  if (nomor) {
+    $("antrian").value = q.get("baru") ? "baru" : "lama";
+    $("saring").value = "semua";
+    posisi = 0;
+    susun();
+    const i = antrian.findIndex((e) => (q.get("baru") ? e.baru[0] : e.lama[0]) === nomor);
+    if (i >= 0) { posisi = i; hitung(); tampil(); }
+  }
+  pantauBangun();
+}
+mulai();
+</script>
+</body>
+</html>

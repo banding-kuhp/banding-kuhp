@@ -1,0 +1,16 @@
+---
+import { ringkasAncaman, arahPenjara } from "../lib/data.js";
+const { dulu, kini } = Astro.props;
+const arah = arahPenjara(dulu?.ancaman, kini?.ancaman);
+const teksArah = { naik: "Penjara lebih berat", turun: "Penjara lebih ringan", sama: "Penjara sama" };
+---
+<table>
+  <caption class="redup" style="text-align:left;caption-side:top;padding-bottom:.4rem">Ancaman pidana maksimum yang terbaca dari teks pasal</caption>
+  <thead><tr><th scope="col">KUHP lama</th><th scope="col">KUHP baru</th></tr></thead>
+  <tbody><tr><td>{ringkasAncaman(dulu?.ancaman)}</td><td>{ringkasAncaman(kini?.ancaman)}</td></tr></tbody>
+</table>
+{arah && <p><span class={`label arah-${arah}`}>{teksArah[arah]}</span></p>}
+<style>
+  .arah-naik { border-color: var(--naik); color: var(--naik); background: transparent; }
+  .arah-turun { border-color: var(--turun); color: var(--turun); background: transparent; }
+</style>

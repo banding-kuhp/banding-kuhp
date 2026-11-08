@@ -1,0 +1,16 @@
+node_modules/
+dist/
+dist-baru/
+dist-lama/
+.astro/
+__pycache__/
+*.py[cod]
+*.log
+*.tmp
+.env
+.env.*
+!.env.example
+.DS_Store
+data/verifikasi.cadangan-*.json
+sumber/ma/uu-1-1946.bin
+sumber/uu2026/details.html

@@ -1,0 +1,491 @@
+{
+ "dikoreksi": [
+  {
+   "nomor": "8",
+   "dari": "tersebutjuga",
+   "jadi": "tersebut juga"
+  },
+  {
+   "nomor": "32",
+   "dari": "jab atan",
+   "jadi": "jabatan"
+  },
+  {
+   "nomor": "85",
+   "dari": "olehjaksa",
+   "jadi": "oleh jaksa"
+  },
+  {
+   "nomor": "103",
+   "dari": "sakitjiwa",
+   "jadi": "sakit jiwa"
+  },
+  {
+   "nomor": "104",
+   "dari": "sam pai",
+   "jadi": "sampai"
+  },
+  {
+   "nomor": "134",
+   "dari": "samajika",
+   "jadi": "sama jika"
+  },
+  {
+   "nomor": "170",
+   "dari": "jarakjauh",
+   "jadi": "jarak jauh"
+  },
+  {
+   "nomor": "171",
+   "dari": "diantaranya",
+   "jadi": "di antaranya"
+  },
+  {
+   "nomor": "179",
+   "dari": "tanggungjawab",
+   "jadi": "tanggung jawab"
+  },
+  {
+   "nomor": "193",
+   "dari": "di pidana",
+   "jadi": "dipidana"
+  },
+  {
+   "nomor": "205",
+   "dari": "tah un",
+   "jadi": "tahun"
+  },
+  {
+   "nomor": "212",
+   "dari": "tah un",
+   "jadi": "tahun"
+  },
+  {
+   "nomor": "242",
+   "dari": "pida na",
+   "jadi": "pidana"
+  },
+  {
+   "nomor": "253",
+   "dari": "terse but",
+   "jadi": "tersebut"
+  },
+  {
+   "nomor": "258",
+   "dari": "perintahjabatan",
+   "jadi": "perintah jabatan"
+  },
+  {
+   "nomor": "261",
+   "dari": "orgamsasi",
+   "jadi": "organisasi"
+  },
+  {
+   "nomor": "262",
+   "dari": "iuka",
+   "jadi": "luka"
+  },
+  {
+   "nomor": "302",
+   "dari": "scseorang",
+   "jadi": "seseorang"
+  },
+  {
+   "nomor": "320",
+   "dari": "mengakibatkanjalannya",
+   "jadi": "mengakibatkan jalannya"
+  },
+  {
+   "nomor": "356",
+   "dari": "yan g",
+   "jadi": "yang"
+  },
+  {
+   "nomor": "384",
+   "dari": "hurufc",
+   "jadi": "huruf c"
+  },
+  {
+   "nomor": "385",
+   "dari": "p8sal",
+   "jadi": "pasal"
+  },
+  {
+   "nomor": "414",
+   "dari": "ka tegori",
+   "jadi": "kategori"
+  },
+  {
+   "nomor": "424",
+   "dari": "a tau",
+   "jadi": "atau"
+  },
+  {
+   "nomor": "429",
+   "dari": "di pidana",
+   "jadi": "dipidana"
+  },
+  {
+   "nomor": "436",
+   "dari": "palin g",
+   "jadi": "paling"
+  },
+  {
+   "nomor": "451",
+   "dari": "d ua",
+   "jadi": "dua"
+  },
+  {
+   "nomor": "451",
+   "dari": "tah un",
+   "jadi": "tahun"
+  },
+  {
+   "nomor": "466",
+   "dari": "tah un",
+   "jadi": "tahun"
+  },
+  {
+   "nomor": "472",
+   "dari": "tanggungjawab",
+   "jadi": "tanggung jawab"
+  },
+  {
+   "nomor": "474",
+   "dari": "iuka",
+   "jadi": "luka"
+  },
+  {
+   "nomor": "478",
+   "dari": "pencunan",
+   "jadi": "pencurian"
+  },
+  {
+   "nomor": "488",
+   "dari": "dilakuka n",
+   "jadi": "dilakukan"
+  },
+  {
+   "nomor": "495",
+   "dari": "tah un",
+   "jadi": "tahun"
+  },
+  {
+   "nomor": "535",
+   "dari": "atali",
+   "jadi": "atau"
+  },
+  {
+   "nomor": "541",
+   "dari": "1zm",
+   "jadi": "izin"
+  },
+  {
+   "nomor": "549",
+   "dari": "tah un",
+   "jadi": "tahun"
+  },
+  {
+   "nomor": "553",
+   "dari": "iuka",
+   "jadi": "luka"
+  },
+  {
+   "nomor": "554",
+   "dari": "iuka",
+   "jadi": "luka"
+  },
+  {
+   "nomor": "599",
+   "dari": "iuka",
+   "jadi": "luka"
+  },
+  {
+   "nomor": "607",
+   "dari": "pencunan",
+   "jadi": "pencurian"
+  },
+  {
+   "nomor": "609",
+   "dari": "diriaksud",
+   "jadi": "dimaksud"
+  },
+  {
+   "nomor": "622",
+   "dari": "q",
+   "jadi": "g"
+  },
+  {
+   "nomor": "622",
+   "dari": "beriku t",
+   "jadi": "berikut"
+  },
+  {
+   "nomor": "622",
+   "dari": "hurufc",
+   "jadi": "huruf"
+  }
+ ],
+ "tinjau": [
+  {
+   "nomor": "3",
+   "llg": "",
+   "ws": "atau"
+  },
+  {
+   "nomor": "12",
+   "llg": "pe benar",
+   "ws": "pembenar"
+  },
+  {
+   "nomor": "20",
+   "llg": "",
+   "ws": "pertanggungjawaban pidana tidak dapat dikenakan terhadap anak yang pada waktu melakukan tindak pidana belum berumur 12 dua belas tahun"
+  },
+  {
+   "nomor": "40",
+   "llg": "pertanggungjawaban pidana tidak dapat dikenakan terhadap anak yang pada waktu melakukan tindak pidana belum berumur 12 dua belas tahun",
+   "ws": ""
+  },
+  {
+   "nomor": "86",
+   "llg": "g",
+   "ws": ""
+  },
+  {
+   "nomor": "90",
+   "llg": "lama",
+   "ws": ""
+  },
+  {
+   "nomor": "95",
+   "llg": "",
+   "ws": "mulai"
+  },
+  {
+   "nomor": "187",
+   "llg": "tindak pidana",
+   "ws": ""
+  },
+  {
+   "nomor": "190",
+   "llg": "1",
+   "ws": ""
+  },
+  {
+   "nomor": "194",
+   "llg": "menggunakan",
+   "ws": ""
+  },
+  {
+   "nomor": "203",
+   "llg": "",
+   "ws": "sk no 161065 a"
+  },
+  {
+   "nomor": "224",
+   "llg": "",
+   "ws": "penyerangan terhadap kepala negara sahabat dan wakil kepala negara sahabat serta penodaan bendera"
+  },
+  {
+   "nomor": "225",
+   "llg": "",
+   "ws": "penyerangan kehormatan atau harkat dan martabat kepala negara sahabat dan wakil negara sahabat"
+  },
+  {
+   "nomor": "233",
+   "llg": "",
+   "ws": "dan golongan penduduk"
+  },
+  {
+   "nomor": "253",
+   "llg": "",
+   "ws": "tidak memberitahukan kepada pejabat yang berwenang adanya orang yang berencana melakukan tindak pidana"
+  },
+  {
+   "nomor": "261",
+   "llg": "",
+   "ws": "secara bersama sama di muka umum"
+  },
+  {
+   "nomor": "273",
+   "llg": "1zm meminjamkan",
+   "ws": "izin"
+  },
+  {
+   "nomor": "274",
+   "llg": "",
+   "ws": "yang"
+  },
+  {
+   "nomor": "280",
+   "llg": "penegak",
+   "ws": ""
+  },
+  {
+   "nomor": "280",
+   "llg": "",
+   "ws": "penegak"
+  },
+  {
+   "nomor": "282",
+   "llg": "berlaku",
+   "ws": ""
+  },
+  {
+   "nomor": "282",
+   "llg": "",
+   "ws": "berlaku"
+  },
+  {
+   "nomor": "284",
+   "llg": "tab un",
+   "ws": "tahun"
+  },
+  {
+   "nomor": "300",
+   "llg": "permusuhan",
+   "ws": ""
+  },
+  {
+   "nomor": "311",
+   "llg": "mengakibatkan",
+   "ws": ""
+  },
+  {
+   "nomor": "333",
+   "llg": "",
+   "ws": "yang"
+  },
+  {
+   "nomor": "333",
+   "llg": "yang",
+   "ws": ""
+  },
+  {
+   "nomor": "342",
+   "llg": "menyerahkan",
+   "ws": ""
+  },
+  {
+   "nomor": "342",
+   "llg": "membahayakan",
+   "ws": ""
+  },
+  {
+   "nomor": "372",
+   "llg": "mengumumkan",
+   "ws": ""
+  },
+  {
+   "nomor": "372",
+   "llg": "babx tindak pidana keterangan palsu di atas sumpah",
+   "ws": ""
+  },
+  {
+   "nomor": "384",
+   "llg": "menggunakan",
+   "ws": ""
+  },
+  {
+   "nomor": "395",
+   "llg": "",
+   "ws": "21"
+  },
+  {
+   "nomor": "417",
+   "llg": "menyalahgunakan",
+   "ws": ""
+  },
+  {
+   "nomor": "449",
+   "llg": "mengakibatkan",
+   "ws": ""
+  },
+  {
+   "nomor": "473",
+   "llg": "menyalahgunakan",
+   "ws": ""
+  },
+  {
+   "nomor": "473",
+   "llg": "menggerakkannya",
+   "ws": ""
+  },
+  {
+   "nomor": "473",
+   "llg": "ayat",
+   "ws": "ayal 21"
+  },
+  {
+   "nomor": "474",
+   "llg": "mengakibatkan",
+   "ws": ""
+  },
+  {
+   "nomor": "474",
+   "llg": "mengakibatkan",
+   "ws": ""
+  },
+  {
+   "nomor": "479",
+   "llg": "memungkinkan",
+   "ws": ""
+  },
+  {
+   "nomor": "607",
+   "llg": "psikotropika",
+   "ws": ""
+  },
+  {
+   "nomor": "622",
+   "llg": "aa",
+   "ws": ""
+  },
+  {
+   "nomor": "622",
+   "llg": "bb",
+   "ws": ""
+  },
+  {
+   "nomor": "622",
+   "llg": "cc",
+   "ws": ""
+  },
+  {
+   "nomor": "622",
+   "llg": "pengacuannya diganti dengan pasal",
+   "ws": ""
+  },
+  {
+   "nomor": "622",
+   "llg": "sebagai",
+   "ws": ""
+  },
+  {
+   "nomor": "622",
+   "llg": "pasal",
+   "ws": ""
+  },
+  {
+   "nomor": "622",
+   "llg": "",
+   "ws": "pasal"
+  },
+  {
+   "nomor": "622",
+   "llg": "pasal",
+   "ws": ""
+  },
+  {
+   "nomor": "622",
+   "llg": "",
+   "ws": "pasal"
+  },
+  {
+   "nomor": "624",
+   "llg": "",
+   "ws": "agar setiap orang mengetahuinya memerintahkan pengundangan undang undang ini dengan penempatannya dalam lembaran negara republik indonesia"
+  }
+ ]
+}
